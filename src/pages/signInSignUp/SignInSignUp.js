@@ -5,6 +5,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import LogoWhite from '../../assets/img/logo-white.png';
 import LogoBlue from '../../assets/img/logo-blue.png';
 import BasicModal from '../../components/modals/BasicModal';
+import SignUpForm from '../../components/signUp/SignUpForm';
 import './signInSignUp.scss';
 
 const LeftComponent = () => {
@@ -20,15 +21,15 @@ const LeftComponent = () => {
     )
 }
 
-const RightComponent = () => {
+const RightComponent = ({ openModal, setShowModal }) => {
     return (
         <Col className="signin-signup-right" xs={6}>
             <div>
                 <img src={LogoWhite} alt="White Logo" />
                 <h2>Mira lo que está pasando en el mundo en este momento</h2>
                 <h3>Únete hoy mismo.</h3>
-                <Button variant="primary">Regístrate</Button>
-                <Button variant="outline-primary">Iniciar sesión</Button>
+                <Button variant="primary" onClick={() => openModal(<SignUpForm setShowModal={setShowModal} />)}>Regístrate</Button>
+                <Button variant="outline-primary" onClick={() => openModal(<h2>Iniciar sesión</h2>)}>Iniciar sesión</Button>
             </div>
         </Col>
     )
@@ -38,19 +39,21 @@ const SignInSignUp = () => {
     const [showModal, setShowModal] = useState(false);
     const [contentModal, setContentModal] = useState(null);
 
+    const openModal = content => {
+        setContentModal(content);
+        setShowModal(true);
+    }
+
     return (
         <>
             <Container className="signin-signup" fluid>
                 <Row>
                     <LeftComponent />
-                    <RightComponent />
+                    <RightComponent openModal={openModal} setShowModal={setShowModal} />
                 </Row>
             </Container>
-            <BasicModal
-                showModal={showModal}
-                setShowModal={setShowModal}
-            >
-                <h1>ModalContent</h1>
+            <BasicModal showModal={showModal} setShowModal={setShowModal}>
+                {contentModal}
             </BasicModal>
         </>
     );
