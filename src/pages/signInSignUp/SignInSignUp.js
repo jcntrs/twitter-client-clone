@@ -6,6 +6,7 @@ import LogoWhite from '../../assets/img/logo-white.png';
 import LogoBlue from '../../assets/img/logo-blue.png';
 import BasicModal from '../../components/modals/BasicModal';
 import SignUpForm from '../../components/signUp/SignUpForm';
+import SignInForm from '../../components/signIn/SignInForm';
 import './signInSignUp.scss';
 
 const LeftComponent = () => {
@@ -21,7 +22,7 @@ const LeftComponent = () => {
     )
 }
 
-const RightComponent = ({ openModal, setShowModal }) => {
+const RightComponent = ({ openModal, setShowModal, setCheckLogin }) => {
     return (
         <Col className="signin-signup-right" xs={6}>
             <div>
@@ -29,13 +30,13 @@ const RightComponent = ({ openModal, setShowModal }) => {
                 <h2>Mira lo que está pasando en el mundo en este momento</h2>
                 <h3>Únete hoy mismo.</h3>
                 <Button variant="primary" onClick={() => openModal(<SignUpForm setShowModal={setShowModal} />)}>Regístrate</Button>
-                <Button variant="outline-primary" onClick={() => openModal(<h2>Iniciar sesión</h2>)}>Iniciar sesión</Button>
+                <Button variant="outline-primary" onClick={() => openModal(<SignInForm setCheckLogin={setCheckLogin} />)}>Iniciar sesión</Button>
             </div>
         </Col>
     )
 }
 
-const SignInSignUp = () => {
+const SignInSignUp = ({ setCheckLogin }) => {
     const [showModal, setShowModal] = useState(false);
     const [contentModal, setContentModal] = useState(null);
 
@@ -49,7 +50,7 @@ const SignInSignUp = () => {
             <Container className="signin-signup" fluid>
                 <Row>
                     <LeftComponent />
-                    <RightComponent openModal={openModal} setShowModal={setShowModal} />
+                    <RightComponent openModal={openModal} setShowModal={setShowModal} setCheckLogin={setCheckLogin} />
                 </Row>
             </Container>
             <BasicModal showModal={showModal} setShowModal={setShowModal}>

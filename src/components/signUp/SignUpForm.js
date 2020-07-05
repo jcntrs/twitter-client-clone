@@ -3,11 +3,13 @@ import { Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import { values, size } from 'lodash';
 import { toast } from 'react-toastify';
 import { isValidEmail } from '../../utils/validations';
+import { signUpAPI } from '../../api/auth';
 import './signUpForm.scss';
 
 const SignUpForm = ({ setShowModal }) => {
     const initialFormValue = { names: '', surnames: '', email: '', password: '', repeatPassword: '' };
     const [formData, setFormData] = useState(initialFormValue);
+    const [signUpLoading, setSignUpLoading] = useState(false);
 
     const handleChange = event => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -15,14 +17,14 @@ const SignUpForm = ({ setShowModal }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        //setShowModal(false);
+
         let validCount = 0;
         values(formData).some(value => {
             value && validCount++;
         });
 
         if (validCount !== size(formData)) {
-            toast.warning('❌ Complete todos los campos del formulario.'); return
+            toast.warning('❌ Completa todos los campos del formulario.'); return
         }
         if (!isValidEmail(formData.email)) {
             toast.warning('❌ Email inválido.'); return
@@ -34,8 +36,20 @@ const SignUpForm = ({ setShowModal }) => {
             toast.warning('❌ Contraseñas debe contener al menos 6 caracteres.'); return
         }
 
-        toast.success('🚀 Formulario OK!')
-        console.log(validCount)
+        setSignUpLoading(true);
+        signUpAPI(formData).then(response => {
+            if (response.code) {
+                toast.error(`❌ ${response.message}`);
+            } else {
+                toast.success('🚀 Registro exitoso!');
+                setShowModal(false);
+                setFormData(initialFormValue);
+            }
+        }).catch(() => {
+            toast.error(`❌ Error del servidor, inténtelo más tarde.`);
+        }).finally(() => {
+            setSignUpLoading(false);
+        });
     }
 
     return (
@@ -65,7 +79,7 @@ const SignUpForm = ({ setShowModal }) => {
                         </Col>
                     </Row>
                 </Form.Group>
-                <Button variant="primary" type="submit">Registrarse</Button>
+                <Button variant="primary" type="submit">{!signUpLoading ? 'Registrarse' : <Spinner animation="border" />}</Button>
             </Form>
         </div>
     );
