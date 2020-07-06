@@ -21,6 +21,7 @@ const SignUpForm = ({ setShowModal }) => {
         let validCount = 0;
         values(formData).some(value => {
             value && validCount++;
+            return null;
         });
 
         if (validCount !== size(formData)) {

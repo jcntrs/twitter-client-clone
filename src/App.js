@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import { isUserLoggedAPI } from './api/auth';
 import SignInSignUp from './pages/signInSignUp';
 import AuthContext from './contexts/auth/AuthContext';
+import Routing from './routes/Routing';
 
 const App = () => {
     const [user, setUser] = useState();
@@ -12,16 +13,16 @@ const App = () => {
     useEffect(() => {
         setUser(isUserLoggedAPI());
         setCheckLogin(false);
-        setUserLoading(false)
+        setUserLoading(true)
     }, [checlLogin]);
 
-    /*     if (!userLoading) return null; */
+    if (!userLoading) return null;
 
     return (
-        <AuthContext.Provider value={user}>
+        <AuthContext.Provider value={{ user, setCheckLogin }}>
             {
                 user
-                    ? <h1>Estás logeado</h1>
+                    ? <Routing />
                     : <SignInSignUp setCheckLogin={setCheckLogin} />
             }
             <ToastContainer
