@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import jwtValid from 'jwt-valid';
+import isJwtValid from 'is-jwt-valid';
 
 const baseURL = process.env.REACT_APP_API_URL
 
@@ -68,8 +68,8 @@ export const logOutAPI = () => {
     localStorage.removeItem('token');
 }
 
-const isValidToken = (token) => {
-    const validToken = jwtValid(token);
+const isValidToken = token => {
+    const validToken = isJwtValid(token);
 
     if (validToken) {
         const { exp } = jwtDecode(token);
