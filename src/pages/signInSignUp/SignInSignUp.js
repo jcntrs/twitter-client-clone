@@ -4,7 +4,7 @@ import { faSearch, faUsers, faComment } from '@fortawesome/free-solid-svg-icons'
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import LogoWhite from '../../assets/img/png/logo-white.png';
 import LogoBlue from '../../assets/img/png/logo-blue.png';
-import BasicModal from '../../components/modals/BasicModal';
+import BasicModal from '../../components/modals/basic/BasicModal';
 import SignUpForm from '../../components/signUp/SignUpForm';
 import SignInForm from '../../components/signIn/SignInForm';
 import './signInSignUp.scss';

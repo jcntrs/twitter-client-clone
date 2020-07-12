@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import LogoWhite from '../../assets/img/png/logo-white.png';
+import LogoWhite from '../../../assets/img/png/logo-white.png';
 import './basicModal.scss';
 
 const BasicModal = ({ showModal, setShowModal, children }) => {

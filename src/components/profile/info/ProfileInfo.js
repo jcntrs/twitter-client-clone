@@ -1,8 +1,25 @@
 import React from 'react';
+import { Location, Link, DateBirth } from '../../../utils/icons';
 import moment from 'moment';
 import language from 'moment/locale/es';
-import { Location, Link, DateBirth } from '../../../utils/icons';
+import ContentLoader from 'react-content-loader'
 import './profileInfo.scss';
+
+const ProfileInfoLoader = () => (
+    <ContentLoader
+        height={140}
+        speed={1}
+        backgroundColor={'#333'}
+        foregroundColor={'#999'}
+        viewBox="0 0 380 70"
+    >
+        {/* Only SVG shapes */}
+        <rect x="10" y="3" rx="4" ry="4" width="150" height="7" />
+        <rect x="10" y="15" rx="3" ry="3" width="75" height="5" />
+        <rect x="10" y="30" rx="3" ry="3" width="200" height="6" />
+        <rect x="10" y="45" rx="4" ry="4" width="300" height="7" />
+    </ContentLoader>
+)
 
 const ProfileInfo = ({ user }) => (
     <>
@@ -28,7 +45,7 @@ const ProfileInfo = ({ user }) => (
                     {user?.birthdate && <p><DateBirth />{moment(user.birthdate).locale('es', language).format('LL')}</p>}
                 </div>
             </div>
-            : <h2>no info</h2>
+            : <ProfileInfoLoader />
         }
     </>
 );
