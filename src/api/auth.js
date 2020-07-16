@@ -1,5 +1,4 @@
 import jwtDecode from 'jwt-decode';
-import isJwtValid from 'is-jwt-valid';
 
 const baseURL = process.env.REACT_APP_API_URL
 
@@ -61,7 +60,6 @@ export const setTokenAPI = token => {
 
 export const getTokenAPI = token => {
     return localStorage.getItem('token');
-
 }
 
 export const logOutAPI = () => {
@@ -69,18 +67,12 @@ export const logOutAPI = () => {
 }
 
 const isValidToken = token => {
-    const validToken = isJwtValid(token);
+    const { exp } = jwtDecode(token);
+    const expire = exp * 1000; // Milliseconds
+    const timeOut = expire - Date.now();
+    const valid = timeOut < 0 ? false : true;
 
-    if (validToken) {
-        const { exp } = jwtDecode(token);
-        const expire = exp * 1000; // Milliseconds
-        const timeOut = expire - Date.now();
-        const valid = timeOut < 0 ? false : true;
-
-        return valid;
-    } else {
-        return false;
-    }
+    return valid;
 }
 
 export const isUserLoggedAPI = () => {

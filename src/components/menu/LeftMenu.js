@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,10 +6,12 @@ import { faHome, faUser, faUsers, faPowerOff } from '@fortawesome/free-solid-svg
 import { logOutAPI } from '../../api/auth';
 import LogoWhite from '../../assets/img/png/logo-white.png';
 import AuthContext from '../../contexts/auth/AuthContext';
+import TweetModal from '../modals/tweet/TweetModal';
 import useAuth from '../../hooks/useAuth';
 import './leftMenu.scss';
 
 const LeftMenu = () => {
+    const [showModal, setShowModal] = useState(false);
     const { setCheckLogin } = useContext(AuthContext);
     const { user } = useAuth();
 
@@ -26,7 +28,8 @@ const LeftMenu = () => {
             <Link to="/usuarios"><FontAwesomeIcon icon={faUsers} /> Usuarios</Link>
             <Link to="" onClick={logOut}><FontAwesomeIcon icon={faPowerOff} /> Cerrar sesión</Link>
 
-            <Button>Nueva Publicación</Button>
+            <Button onClick={() => setShowModal(true)}>Publicar</Button>
+            <TweetModal showModal={showModal} setShowModal={setShowModal} />
         </div>
     );
 }
