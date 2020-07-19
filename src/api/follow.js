@@ -52,3 +52,19 @@ export const unFollowUserAPI = userID => {
     });
 }
 
+export const getFollowsAPI = paramsURL => {
+    const url = `${baseURL}/lista-usuarios?${paramsURL}`;
+
+    const params = {
+        headers: {
+            Authorization: `Bearer${getTokenAPI()}`
+        }
+    }
+
+    return fetch(url, params).then(response => {
+        return response.json();
+    }).catch(err => {
+        return err;
+    });
+}
+

@@ -8,7 +8,7 @@ import { Button, Spinner } from 'react-bootstrap';
 import MainLayout from '../../layout/main/MainLayout';
 import AvatarBanner from '../../components/profile/graphic/AvatarBanner';
 import ProfileInfo from '../../components/profile/info/ProfileInfo';
-import ListTweets from '../../components/list/ListTweets';
+import ListTweets from '../../components/list/tweets/ListTweets';
 import './profile.scss';
 
 const Profile = ({ match: { params: { id } } }) => {
@@ -16,7 +16,7 @@ const Profile = ({ match: { params: { id } } }) => {
     const [tweets, setTweets] = useState(null);
     const [page, setPage] = useState(1);
     const [loadingPosts, setLoadingPosts] = useState(false);
-    
+
     const getMorePosts = () => {
         const tempPage = page + 1;
         setLoadingPosts(true);

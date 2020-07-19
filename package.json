@@ -17,6 +17,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
+    "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-content-loader": "^5.1.0",
@@ -26,7 +27,8 @@
     "react-loading-skeleton": "^2.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-toastify": "^6.0.6"
+    "react-toastify": "^6.0.6",
+    "use-debounce": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",

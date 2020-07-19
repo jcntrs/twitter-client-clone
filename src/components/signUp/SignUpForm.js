@@ -39,7 +39,6 @@ const SignUpForm = ({ setShowModal }) => {
 
         setSignUpLoading(true);
         signUpAPI(formData).then(response => {
-            console.log(response)
             if (response.code) {
                 toast.error(`❌ ${response.message}`);
             } else {
