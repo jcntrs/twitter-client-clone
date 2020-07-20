@@ -12,6 +12,7 @@ const User = ({ user }) => {
         getUserAPI(user.id).then(response => {
             setUserInfo(response);
         })
+        // eslint-disable-next-line
     }, []);
 
     return (

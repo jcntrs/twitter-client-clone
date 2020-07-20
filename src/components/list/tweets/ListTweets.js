@@ -38,8 +38,8 @@ const Tweet = ({ tweet }) => {
 const ListTweets = ({ tweets }) => {
     return (
         <div className="list-tweets">
-            {tweets.map(tweet => (
-                <Tweet key={tweet._id} tweet={tweet} />
+            {tweets.map((tweet, idx) => (
+                <Tweet key={idx} tweet={tweet} />
             ))}
         </div>
     );
