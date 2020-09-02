@@ -2,6 +2,10 @@
 
 .signin-signup {
     &-left {
+        @media (max-width: 769px) {
+            display: none;
+        }
+        
         overflow: hidden;
         min-height: 100vh;
         background-color: $primary-light;

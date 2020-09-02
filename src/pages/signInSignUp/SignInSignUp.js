@@ -11,7 +11,7 @@ import './signInSignUp.scss';
 
 const LeftComponent = () => {
     return (
-        <Col className="signin-signup-left" xs={6}>
+        <Col className="signin-signup-left" md={6}>
             <img src={LogoBlue} alt="Blue Logo" />
             <div>
                 <h2><FontAwesomeIcon icon={faSearch} />Sigue lo que te interesa.</h2>
@@ -24,7 +24,7 @@ const LeftComponent = () => {
 
 const RightComponent = ({ openModal, setShowModal, setCheckLogin }) => {
     return (
-        <Col className="signin-signup-right" xs={6}>
+        <Col className="signin-signup-right" md={6}>
             <div>
                 <img src={LogoWhite} alt="White Logo" />
                 <h2>Mira lo que está pasando en el mundo en este momento</h2>
